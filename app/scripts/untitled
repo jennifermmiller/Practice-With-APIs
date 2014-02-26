@@ -1,0 +1,78 @@
+//Example from class:
+
+var EtsyItem = Backbone.Model.extend({
+	//parse over items and _.filter those that are commercial ceramics??? does esty mark these somehow?
+});
+
+var ItemsCollection = Backbone.Collection.extend({
+	model: EtsyItem,
+
+	//just for fetching, will never need to send anything
+	url: "https://openapi.etsy.com/v2/shops.js?api_key=42hmr9rr7q7wvj31sce3ofwt&callback=?",
+	
+	//cleans this up to one array of results
+	//we ignored count but could to stuff with meta data, just need to save it (ex/ this.count=result.count)
+	//in most cases w/ parse, just need to dig a layer or two deep
+	parse: function(response){
+		return response.results;
+	},
+
+})
+
+var MainRouter = Backbone.Router.extend({
+	routes:{
+		"shops" : "showShops",
+		"shops/:keyword" : "showShops"
+	},
+
+	initialize: function(){
+		console.log('Aye Aye Cap\'n, the router\'s on-line!');
+
+		this.items = new ItemsCollection;
+
+		this.items.on('add', function(item){
+			new ItemView({model:item})
+		})
+
+		
+	},
+
+	showShops: function(keyword){
+		if(keyword){
+			this.item.url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +keyword+ "&api_key=42hmr9rr7q7wvj31sce3ofwt&callback=?"; 
+		}
+
+		this.items.fetch();
+
+		//items.fetch(); //so on url /shops our new collection is available, but at this point, not displayed
+			//how do we now loop over the collection evertime
+	}
+})	
+
+var ItemView = Backbone.View.extend({
+	initialize: function(){
+		$('.jumbotron').append(this.el)
+		this.render()
+	},
+	render: function(){
+		this.$el.html(this.model.get('shop_name'))
+	}
+})
+
+//javascript is asycnornius...so cant loop over collection directly after fetch...its too soon!
+//try to use 
+
+//****cleanest way to get data: hooking up api directly to backbone collection
+
+
+
+
+
+
+
+
+
+
+
+
+

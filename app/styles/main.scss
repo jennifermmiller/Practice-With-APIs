@@ -41,34 +41,97 @@ body {
     padding-top: 19px;
     color: #777;
     border-top: 1px solid #e5e5e5;
+    float: right;
 }
 
 .container-narrow > hr {
     margin: 30px 0;
 }
 
+//Colors:
+$drkblue: #225378;
+$drkgrn: #1695A3;
+$ltgrn: #ACF0F2;
+$beige: #F3FFE2;
+$orange: #EB7F00;
+
 /* Main marketing message and sign up button */
-.jumbotron {
+.bckgrd{
+    background: lightgray;
+}
+
+.myheader{
+    font-size: 26px;
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-    .btn {
-        font-size: 21px;
-        padding: 14px 24px;
+    margin-bottom: 20px;
+    border: none;
+    color: $drkblue;
+    text-shadow: 1px 1px;
+}
+
+.list-of-items,
+.main-view {
+    display: inline-block;
+}
+
+.list-of-items{
+    height: 600px;
+    overflow: scroll;
+    background: $orange;
+    text-decoration: none;
+    color: $drkblue;
+
+    a{
+        color: inherit;
     }
 }
 
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-    p + h4 {
-        margin-top: 28px;
-    }
+.main-view{
+    .jumbotron {
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+        background: $drkblue;
+
+        img, h3{
+            display: inline-block;
+        }
+
+        img {
+            margin: 0 15px 15px -15px;
+            width: 200px;
+            height: 200px;
+        }
+
+        h3{
+            vertical-align: middle;
+            width: 250px;
+            margin-top: -5px;
+        }
+
+        .item-description{
+            margin: 30px 0 5px -10px;
+            width: 510px;
+            background: $beige;
+            padding: 15px;
+            height: 195px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        .more-info{
+            a{
+                float: right;
+                margin-left: 255px;
+            }
+        }
+    }    
 }
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 960px;
     }
 
     /* Remove the padding we set earlier */
