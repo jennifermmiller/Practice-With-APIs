@@ -13,6 +13,15 @@ var ItemsCollection = Backbone.Collection.extend({
 		this.on('add', function(item){
 			new ListView({model: item});
 		});
+	},
+
+	comparator: function(a,b) {
+	   var a = parseFloat(a.get('price')),
+	       b = parseFloat(b.get('price'));
+	 
+	   if (a == b) return 0;
+	 
+	   return a > b ? 1 : -1;
 	}
 });
 

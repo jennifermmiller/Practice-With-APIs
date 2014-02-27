@@ -1,6 +1,7 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import "compass/css3";
 
 .browsehappy {
     margin: 0.2em 0;
@@ -96,7 +97,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     .focus-view {
         text-align: center;
         box-shadow: 1px 1px 1px;
-
+        @include transition(all 1s easein);
 
         img, h3{
             display: inline-block;

@@ -1,10 +1,12 @@
 console.log('manbearpig');
-//need to link to esty api (also decide which products i want to display)
-	//Pottery/ceramics -> way to filter out commercial looking coffee mugs?
+//Pottery/ceramics -> way to filter out commercial looking coffee mugs?
 
 //Goals: fetch on interval,
-//		 sort by price
+//		 sort by price both ways
 //		 search
+//		 Hookup home view 
+// 		 Improve changing background
+//		 Be able to add ___ more to list-view
 
 $(document).ready(function(){
 
@@ -14,13 +16,20 @@ $(document).ready(function(){
 
 	fetchNewItems();
 
-	$('.sort-by-price').click(function(){
+	$('.sort-by-price').on('click', function(){
 		sortItems();
 	});
+
+	$('.add-items-to-list').on('click', function(){
+		increaseItemList();	
+	});
+
+	$('.js-search-btn').on('click', function(){
+		var searchWord = $('.js-keyword-search').val();
+	});
+
+
 	
-	$('.search-items').click(function(){
-		$('.search-results').html(_.template($('.search-template').text()));
-	})
 });
 
 
@@ -38,19 +47,31 @@ function fetchNewItems(){
 	}, 120000);
 }
 
-//Somehow need to run price through parseFloat b4 sorting, make a comparator function inside collection?
 //Improve this so it toggles?
 function sortItems(){
-	
-	items.comparator = ('price');
 
 	items.sort();
 
-	$('.list-of-items').empty('');
+	$('.item-list-version').empty('');
 
 	items.each(function(item){
 		new ListView({model: item});
 	});
+}
+
+function increaseItemList(){
+	$('.item-list-version').empty('');
+
+	var newLimit = 25 + parseFloat($('.js-additional').val());
+
+	items.url = 'https://api.etsy.com/v2/listings/active.js?keywords=ceramic,pottery&limit='+ newLimit +'&api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&callback=?',
+
+	items.fetch();
+
+	items.each(function(item){
+		new ListView({model: item});
+	});
+
 }
 
 

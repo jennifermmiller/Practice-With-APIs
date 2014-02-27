@@ -1,33 +1,35 @@
 var SearchView = Backbone.View.extend({
-	
-	
+	className: "search-list",
+
+	createTemplate: _.template($('#search-template').text()),
+
 	events:{
-		'search/:keyword' : "showSearchResults"
+		'click .js-search-btn': 'getResults'
 	},
 
 	initialize: function(){
-		setKeyword();
 
-		$('.search-results').append(this.el);
+		$('.js-main-view').empty();
+		$('.js-main-view').append(this.el);
 
 		this.render();
 	},
 
 	render: function(){
-		this.$el.html(this.createTemplate(this.model));
+		this.$el.html(this.createTemplate());
 	},
 
-	showSearchResults: function(keyword){
-		if (keyword) {
-			this.items.url = 'https://api.etsy.com/v2/listings/active.js?keywords=ceramic,pottery,' + keyword + '&api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&callback=?';
+	getResults: function(){
+		var searchWord = $('.js-keyword-search').val();
+		var link = '#search/results/' + searchWord;
+		if (searchWord !== '') {
+			this.$el.find('.js-search-btn').attr('href', link);
 		}
-
-		this.items.fetch();
-	},
-
-	setKeyword: function(){
-		var keyword = $('.js-keyword-search').val();
-		var link = '#/search/' + keyword;
-		$('.js-search-btn').attr({href: link});
 	}
-})
+});
+
+// if (keyword) {
+// 			this.items.url = 'https://api.etsy.com/v2/listings/active.js?keywords=ceramic,pottery,' + keyword + '&api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&callback=?';
+// 		}
+
+// 		this.items.fetch();

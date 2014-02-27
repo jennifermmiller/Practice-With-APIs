@@ -12,7 +12,6 @@ var ListView = Backbone.View.extend({
 
 		this.render();
 	},
-
 	render: function(){
 		this.$el.html(this.createTemplate(this.model));
 	},
@@ -22,6 +21,8 @@ var ListView = Backbone.View.extend({
 		var link  = '#/items/' + id;
 		this.$el.attr({href: link});
 	},
+
+	
 });
 
 	

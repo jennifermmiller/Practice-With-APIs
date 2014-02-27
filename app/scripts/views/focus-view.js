@@ -1,4 +1,5 @@
 //Better way to inject a new background color into to page? (see template) 
+//Set up css transition b/n changing views
 
 var FocusView = Backbone.View.extend({
 
@@ -7,7 +8,7 @@ var FocusView = Backbone.View.extend({
 	createTemplate: _.template($('#focus-view-template').text()),
 
 	initialize: function(){	
-		$('.js-main-view').html(this.el); //IM so dumb! only want one at a time thus html!
+		$('.js-main-view').html(this.el); 
 
 		this.render();
 	},
