@@ -35,36 +35,21 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     color: #777;
     border-top: 1px solid #e5e5e5;
     float: right;
+
 }
 
 .container-narrow > hr {
     margin: 30px 0;
 }
 
-//Colors:
-$drkblue: #225378;
-$drkgrn: #1695A3;
-$ltgrn: #ACF0F2;
-$beige: #F3FFE2;
-$orange: #EB7F00;
-
 /* Main marketing message and sign up button */
 .bckgrd{
     background: rgb(91, 168, 165);
-    padding-top: 45px;
+    padding: 45px 0;
 }
 
 .header-bckgrd{
-    background: antiquewhite;
-    
-    .myheader{
-        font-size: 26px;
-        text-align: center;
-        margin-bottom: 20px;
-        border: none;
-        color: $drkblue;
-        text-shadow: 1px 1px;
-    }    
+    background: antiquewhite;  
 }
 
 .list-of-items,
@@ -75,8 +60,8 @@ $orange: #EB7F00;
 .list-of-items{
     height: 544px;
     overflow: scroll;
-    background: $beige;
     margin-right: 80px;
+    background: #F3FFE2;
     
     .list-header{
         color: #636161;
@@ -103,9 +88,7 @@ $orange: #EB7F00;
                 background: rgb(214, 222, 195);
                 font-weight: 900;
             }
-        }
-
-       
+        }    
     }    
 }
 
@@ -134,7 +117,6 @@ $orange: #EB7F00;
         .item-description{
             margin: 10px 0 10px 35px;
             width: 460px;
-            background: $beige;
             padding: 10px;
             height: 184px;
             text-align: left;

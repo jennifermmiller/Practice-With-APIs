@@ -53,9 +53,9 @@
                         <!-- Append focus-template here -->
                     </div>
                 </div>
-        
+                <div class="search-results"></div>
                 <div class="track-price">
-                    <!-- Table with trending prices??? -->
+                    <!-- append table with trending prices??? -->
                 </div>   
             </div>
         </div>
@@ -85,7 +85,20 @@
             </div>
         </script>
 
-        <script type="text/template" id="char-view-template">
+        <script type="text/template">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="js-keyword-search form-control" placeholder="Search keywords here..."/>
+                    <span class="input-group-btn">
+                        <a class="js-search-btn btn btn-default" type="button">Search!</a>
+                    </span>
+                </div>
+             </div>
+             
+
+        </script>
+
+        <script type="text/template" id="table-view-template">
             //append chart of trending prices here?
         </script>
 
@@ -129,6 +142,7 @@
         <script src="scripts/model.js"></script>
         <script src="scripts/views/list-view.js"></script>
         <script src="scripts/views/focus-view.js"></script>
+        <script src="scripts/views/search-view.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

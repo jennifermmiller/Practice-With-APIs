@@ -18,10 +18,13 @@ $(document).ready(function(){
 		sortItems();
 	});
 	
+	$('.search-items').click(function(){
+		$('.search-results').html(_.template($('.search-template').text()));
+	})
 });
 
 
-//Does this work? Console.log prints but cant seem to pay attention enough to notice if new things actually load
+//Does this work? Success console.log prints but cant seem to pay attention long enough to notice if new things are actually loading
 function fetchNewItems(){
 	setInterval(function(){
 		items.fetch({
