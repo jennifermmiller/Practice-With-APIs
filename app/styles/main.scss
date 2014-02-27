@@ -9,12 +9,6 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -25,14 +19,13 @@ body {
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
+    margin-top: 20px;
 
     /* Make the masthead heading the same height as the navigation */
     h3 {
         margin-top: 0;
         margin-bottom: 0;
         line-height: 40px;
-        padding-bottom: 19px;
     }
 }
 
@@ -57,16 +50,21 @@ $orange: #EB7F00;
 
 /* Main marketing message and sign up button */
 .bckgrd{
-    background: lightgray;
+    background: rgb(91, 168, 165);
+    padding-top: 45px;
 }
 
-.myheader{
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 20px;
-    border: none;
-    color: $drkblue;
-    text-shadow: 1px 1px;
+.header-bckgrd{
+    background: antiquewhite;
+    
+    .myheader{
+        font-size: 26px;
+        text-align: center;
+        margin-bottom: 20px;
+        border: none;
+        color: $drkblue;
+        text-shadow: 1px 1px;
+    }    
 }
 
 .list-of-items,
@@ -75,53 +73,86 @@ $orange: #EB7F00;
 }
 
 .list-of-items{
-    height: 600px;
+    height: 544px;
     overflow: scroll;
-    background: $orange;
-    text-decoration: none;
-    color: $drkblue;
-
-    a{
-        color: inherit;
+    background: $beige;
+    margin-right: 80px;
+    
+    .list-header{
+        color: #636161;
+        font-size: 20px;
+        height: 60px;
+        border-bottom: 1px solid;
+        line-height: 60px;
+        text-align: center;
     }
+
+    .item-list-version{
+        text-decoration: none;
+        color: #999999;
+
+        div{
+            padding: 10px 5px 30px 5px;
+            border-bottom: 1px solid;
+
+            span{
+                float: right;
+            }
+
+            &:hover{
+                background: rgb(214, 222, 195);
+                font-weight: 900;
+            }
+        }
+
+       
+    }    
 }
 
 .main-view{
-    .jumbotron {
+    .focus-view {
         text-align: center;
-        border-bottom: 1px solid #e5e5e5;
-        background: $drkblue;
+        box-shadow: 1px 1px 1px;
+
 
         img, h3{
             display: inline-block;
         }
 
         img {
-            margin: 0 15px 15px -15px;
-            width: 200px;
-            height: 200px;
+            margin: 30px 0 30px 30px;
+            width: 225px;
+            height: 225px;
         }
 
         h3{
             vertical-align: middle;
-            width: 250px;
-            margin-top: -5px;
+            width: 200px;
+            margin: -5px 30px 0 39px
         }
 
         .item-description{
-            margin: 30px 0 5px -10px;
-            width: 510px;
+            margin: 10px 0 10px 35px;
+            width: 460px;
             background: $beige;
-            padding: 15px;
-            height: 195px;
+            padding: 10px;
+            height: 184px;
             text-align: left;
             overflow: scroll;
         }
 
         .more-info{
+            padding-bottom: 25px;
+
+            span{
+                float: left;
+                margin-left: 80px;
+                font-size: 18px;
+                padding-right: 125px;
+            }
+
             a{
-                float: right;
-                margin-left: 255px;
+                font-size: 18px;
             }
         }
     }    

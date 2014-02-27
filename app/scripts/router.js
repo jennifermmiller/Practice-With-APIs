@@ -1,26 +1,29 @@
 var MainRouter = Backbone.Router.extend({
-	routes:{
-		"" : "showList",
-		"items/:id": "focusOnItem"
+	routes: {
+		'': 'listItems',
+		'items/:id': 'focusOnItem',
+		'sort': 'sortItems'
 	},
 
 	initialize: function(){
-		console.log('Aye Aye Cap\'n, the router\'s on-line!');
+		window.items = new ItemsCollection();
 	},
 
-	showList: function(){
-		$('.js-list-of-items').empty();
+	listItems: function(keyword){
+		if(keyword){
+			this.items.url = 'https://api.etsy.com/v2/listings/active.js?keywords=ceramic,pottery'+ keyword +'&api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&limit=500&callback=?';
+		}
 
-		etsyItems.each(function(item){
-			new ListView({model:item});
-		});
+		items.fetch();
 	},
 
 	focusOnItem: function(id){
-		var focusItem = etsyItems.find(function(item){
+		var focusItem = items.find(function(item){
 			return item.get('listing_id') == id;
 		});
 
-		new FocusView({model: focusItem});
-	}
+		new FocusView({model:focusItem});
+	},
+
+
 });

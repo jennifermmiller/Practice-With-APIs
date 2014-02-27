@@ -1,58 +1,53 @@
 console.log('manbearpig');
 //need to link to esty api (also decide which products i want to display)
 	//Pottery/ceramics -> way to filter out commercial looking coffee mugs?
-//need to create a sort function (by price or color or whatever)
-//need to fetch on an interval
 
+//Goals: fetch on interval,
+//		 sort by price
+//		 search
 
- $(document).ready(function(){
+$(document).ready(function(){
 
 	router = new MainRouter();
 
-	$.ajax({
+	Backbone.history.start();
 
-		dataType: 'jsonp',
+	fetchNewItems();
 
-		url: "https://openapi.etsy.com/v2/listings/active.js?keywords=ceramics,pottery&callback=etsyResults&fields=title,price,description,listing_id,url&limit=50&includes=Images:1&api_key=42hmr9rr7q7wvj31sce3ofwt",
-
-
-		success: function (resultsFromPageLoad) {
-		    etsyItems = new ItemsCollection(resultsFromPageLoad.results);
-		    
-		    etsyItems.each( function(item) {
-		      	new ListView({model:item});
-		    });
-
-		    Backbone.history.start();
-		},
-
-		error: function (msg) {
-		    console.log('Page load error');
-		},
-
+	$('.sort-by-price').click(function(){
+		sortItems();
 	});
-
 	
 });
 
-// getNewListings: function(){
-// 	setInterval(function(){
-// 		etsyItems.fetch({
-// 			success: function(){
-// 				console.log("Woot! Getting new items now!")
-// 			},
-// 			error: function(){
-// 				console.log("Oops! Can't process request.")
-// 			}
-// 		});
-// 	}, 4000) //120000 for 2min
-// }	
 
+//Does this work? Console.log prints but cant seem to pay attention enough to notice if new things actually load
+function fetchNewItems(){
+	setInterval(function(){
+		items.fetch({
+			success: function(){
+				console.log('Sweet! Fetching new items for you.');
+			},
+			error: function(){
+				console.log('Unfortuntely cannot fetch new messages at this time.');
+			}
+		});
+	}, 120000);
+}
+
+//Somehow need to run price through parseFloat b4 sorting, make a comparator function inside collection?
+//Improve this so it toggles?
+function sortItems(){
 	
+	items.comparator = ('price');
 
-//Attempt at sorting function
-//function sortList(){
-//	var listItems = JSON.stringify(etsyItems);
-	//etsyItems = _.indexBy('listItems','price');
-	//new ListView({model: this.model});	
-//};	
+	items.sort();
+
+	$('.list-of-items').empty('');
+
+	items.each(function(item){
+		new ListView({model: item});
+	});
+}
+
+

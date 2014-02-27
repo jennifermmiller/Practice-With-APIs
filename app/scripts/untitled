@@ -8,7 +8,7 @@ var ItemsCollection = Backbone.Collection.extend({
 	model: EtsyItem,
 
 	//just for fetching, will never need to send anything
-	url: "https://openapi.etsy.com/v2/shops.js?api_key=42hmr9rr7q7wvj31sce3ofwt&callback=?",
+	url: "https://openapi.etsy.com/v2/listings/active.js?keywords=ceramics,pottery&callback=etsyResults&fields=title,price,description,listing_id,url&limit=50&includes=Images:1&api_key=42hmr9rr7q7wvj31sce3ofwt",
 	
 	//cleans this up to one array of results
 	//we ignored count but could to stuff with meta data, just need to save it (ex/ this.count=result.count)
@@ -28,18 +28,19 @@ var MainRouter = Backbone.Router.extend({
 	initialize: function(){
 		console.log('Aye Aye Cap\'n, the router\'s on-line!');
 
-		this.items = new ItemsCollection;
+		this.items = new ItemsCollection();
 
 		this.items.on('add', function(item){
 			new ItemView({model:item})
 		})
 
 		
+
 	},
 
 	showShops: function(keyword){
 		if(keyword){
-			this.item.url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +keyword+ "&api_key=42hmr9rr7q7wvj31sce3ofwt&callback=?"; 
+			this.item.url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +keyword+ "&api_key=42hmr9rr7q7wvj31sce3ofwt&limit=5&callback=?"; 
 		}
 
 		this.items.fetch();

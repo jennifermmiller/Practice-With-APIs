@@ -11,8 +11,6 @@ var ListView = Backbone.View.extend({
 		$('.js-list-of-items').append(this.el);
 
 		this.render();
-
-		this.listenTo(this.model, 'add', this.render)
 	},
 
 	render: function(){

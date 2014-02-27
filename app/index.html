@@ -25,34 +25,37 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <h3 class="text-muted">Etsy API Practice</h3>
-            </div>
+        <div class="header-bckgrd">
+            <div class="container">
+                <div class="header">
+                    <ul class="nav nav-pills pull-right">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#search/bowl">About</a></li>
+                        <li><a href="#search/mug">Contact</a></li>
+                    </ul>
+                    <h3 class="text-muted">Shop a Collection of Etsy Pottery</h3>
+                </div>
+            </div>    
         </div>    
            
         <div class="bckgrd">
             <div class="container">   
                 <div class="row">
-                    <div class="myheader col-lg-12">Shop a Collection of Etsy Pottery</div>
-                </div>
-                <div class="rox">
-                    <div class="js-list-of-items list-of-items col-lg-4">
-                        <!-- Append list-template here -->
-                    <button class="sort-btn">Sort List</button>
-                    </div>
-                    <div class="js-main-view main-view col-lg-8">
+                    <div class="col-lg-5">
+                        <div class="js-list-of-items list-of-items">
+                            <div class="list-header">Shop the Most Recent Listings:</div>    
+                            <!-- Append list-template here -->
+                        </div>
+                        <button class="sort-by-price">Sort by Price</button>
+                        <button class="search-items">Search</button>
+                    </div>    
+                    <div class="js-main-view main-view col-lg-7">
                         <!-- Append focus-template here -->
                     </div>
                 </div>
+        
                 <div class="track-price">
-
+                    <!-- Table with trending prices??? -->
                 </div>   
             </div>
         </div>
@@ -63,19 +66,23 @@
 
 
         <script type="text/template" id="list-view-template">
-            <h4><%=this.model.get('title')%></h4> 
-            <span>$<%=this.model.get('price')%></span> 
+            <div>
+                <h4><%=this.model.get('title')%></h4> 
+                <span>$<%=this.model.get('price')%></span>
+            </div>    
         </script>
         <script type="text/template" id="focus-view-template">
+            <div style="background-color: #<%=this.model.get('Images')[0].hex_code%>">
             <img src="<%=this.model.get('Images')[0].url_570xN%>"/>
             <h3><%=this.model.get('title')%></h3>
-            <div class="item-description">
+            <div class="item-description" style="background-color: #<%=this.model.get('Images')[1].hex_code%>">
                 <p><%=this.model.get('description')%></p>
             </div>
             <div class="more-info">
                 <span>$<%=this.model.get('price')%></span>
                 <a  href='<%=this.model.get("url")%>'>View on Etsy</a>
             </div>    
+            </div>
         </script>
 
         <script type="text/template" id="char-view-template">
@@ -87,6 +94,7 @@
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+ 
         <script src="bower_components/chartjs/Chart.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
