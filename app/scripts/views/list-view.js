@@ -21,8 +21,6 @@ var ListView = Backbone.View.extend({
 		var link  = '#/items/' + id;
 		this.$el.attr({href: link});
 	},
-
-	
 });
 
 	

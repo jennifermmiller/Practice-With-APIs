@@ -3,7 +3,7 @@ console.log('manbearpig');
 
 //Goals: fetch on interval,
 //		 sort by price both ways
-//		 search
+//		 search -> maybe put search field in header????
 //		 Hookup home view 
 // 		 Improve changing background
 //		 Be able to add ___ more to list-view
@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 	Backbone.history.start();
 
-	fetchNewItems();
+	//fetchNewItems();
 
 	$('.sort-by-price').on('click', function(){
 		sortItems();
@@ -25,11 +25,15 @@ $(document).ready(function(){
 	});
 
 	$('.js-search-btn').on('click', function(){
-		var searchWord = $('.js-keyword-search').val();
+		var keyword = $('.js-keyword-search').val();
+
+		window.location.hash = 'search/' + keyword;
+
+		$('.js-keyword-search').val('');
 	});
 
 
-	
+
 });
 
 
@@ -68,10 +72,9 @@ function increaseItemList(){
 
 	items.fetch();
 
-	items.each(function(item){
-		new ListView({model: item});
-	});
+	// items.each(function(item){
+	// 	new ListView({model: item});
+	// });
 
 }
-
 

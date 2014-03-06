@@ -1,47 +1,39 @@
 var MainRouter = Backbone.Router.extend({
 	routes: {
 
-		'': 'listItems',
+		'': 'index',
 		'items/:id': 'focusOnItem',
-		'search/': 'searchItems',
-		'results/:searchWord': 'showResults'
+		'search/:keyword': 'showSearch',
 	},
 
 	initialize: function(){
-		window.items = new ItemsCollection();
+		this.items = new ItemsCollection();
+
+		this.items.on('add', function(item){
+			new ListView({model: item});
+		});
 	},
 
-	listItems: function(){
-		
-		items.fetch();
+	index: function(){
+		this.items.fetch();
 	},
 
 	focusOnItem: function(id){
-		var focusItem = items.find(function(item){
+		var focusItem = this.items.find(function(item){
 			return item.get('listing_id') == id;
 		});
 
 		new FocusView({model:focusItem});
 	},
 
-	searchItems: function(){
-		console.log('anything?');
-		new SearchView();
-	},
+	showSearch: function(keyword){
 
-	showResults: function(){
-		console.log('here?');
-		
-		var searchWord = ('.js-keyword-search').val();
-		
 		$('.item-list-version').empty('');
-		
-		items.url = 'https://api.etsy.com/v2/listings/active.js?api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&limit=50&callback=?&keywords=ceramic,pottery,'+ SearchWord;
+		$('.list-header').html('Shopping '+ keyword +' items:');
 
-		items.fetch();
+		this.items.url += ','+ keyword;
 
-		items.each(function(item){
-			new ListView({model: item});
-		});
+		this.items.fetch();
+
 	}	
 });

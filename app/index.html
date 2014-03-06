@@ -30,8 +30,15 @@
                 <div class="header">
                     <ul class="nav nav-pills pull-right">
                         <li class="active"><a href="">Home</a></li>
-                        <li><a href="#search/">Search</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#/compare">Compare</a></li>
+                        <li>
+                            <div class="input-group">
+                                <input type="text" class="js-keyword-search" placeholder="Search for keyword..."/>
+                                <span class="input-group-btn">
+                                    <a class="js-search-btn btn btn-default" type="button">Search!</a>
+                                </span>
+                            </div>
+                        </li>    
                     </ul>
                     <h3 class="text-muted">Shop a Collection of Etsy Pottery</h3>
                 </div>
@@ -52,6 +59,10 @@
                     </div>    
                     <div class="js-main-view main-view col-lg-7">
                         <!-- Append focus-template here -->
+                    </div>
+                    
+                    <div class="results">
+                        <!-- Append search results here? -->
                     </div>
                 </div>
                 <div class="track-price">
@@ -85,20 +96,23 @@
             </div>
         </script>
 
-        <script type="text/template" id="search-template">
-            <div class="input-group">
-                <input type="text" class="js-keyword-search form-control" placeholder="Search for keyword..."/>
-                <span class="input-group-btn">
-                    <a class="js-search-btn btn btn-default" type="button">Search!</a>
-                </span>
-            </div>
-            <div class="results">
-
-            </div>
-        </script>
-
         <script type="text/template" id="table-view-template">
             //append chart of trending prices here?
+        </script>
+
+        <script type="text/template" id="compare-template">
+            <div class="first-search">
+                <input type="text" id="first-search-input" placeholder="First I want to search for...">
+                <div class="first-search-list">First results here</div>
+                <div class="first-focus-spot">Focus on item here</div>
+            </div>
+            <div class="second-search">
+                <input type="text" id="second-search-input" placeholder="Second I want to search for...">
+                <div class="second-search-list">First results here</div>
+                <div class="second-focus-spot">Focus on item here</div>
+            </div>
+
+
         </script>
 
         <!-- build:js scripts/vendor.js -->
