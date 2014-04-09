@@ -1,6 +1,9 @@
-<!DOCTYPE html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html class=no-js><!--<![endif]--><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><title>etsyapi practice</title><meta name=description content=""><meta name=viewport content="width=device-width"><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/vendor.css><link rel=stylesheet href=styles/63f0f205.main.css><script src=bower_components/modernizr/modernizr.js></script><body><!--[if lt IE 10]>
+<!DOCTYPE html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html class=no-js><!--<![endif]--><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><title>etsyapi practice</title><meta name=description content=""><meta name=viewport content="width=device-width"><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/d5bb7d37.vendor.css><link rel=stylesheet href=styles/46e1e700.main.css><script src=bower_components/modernizr/modernizr.js></script><body><!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]--><div class=header-bckgrd><div class=container><div class=header><ul class="nav nav-pills pull-right"><li class=active><a href=#>Home</a></li><li><a href=#search/bowl>About</a></li><li><a href=#search/mug>Contact</a></li></ul><h3 class=text-muted>Shop a Collection of Etsy Pottery</h3></div></div></div><div class=bckgrd><div class=container><div class=row><div class=col-lg-5><div class="js-list-of-items list-of-items"><div class=list-header>Shop the Most Recent Listings:</div><!-- Append list-template here --></div><button class=sort-by-price>Sort by Price</button> <button class=search-items>Search</button></div><div class="js-main-view main-view col-lg-7"><!-- Append focus-template here --></div></div><div class=search-results></div><div class=track-price><!-- append table with trending prices??? --></div></div></div><div class=footer><p>♥ from JMills</p></div><script type=text/template id=list-view-template><div>
+        <![endif]--><div class=header><div class=container><ul class="nav nav-pills pull-right"><li class=input-group><input class=js-keyword-search placeholder="Search for keyword..."></li><li class=input-group><a><button class="js-search-btn btn btn-default">Search</button></a></li><!-- <li><button><a href="#/compare">Compare</a></button></li> Come back to this--></ul><a href=""><h3 class=text-muted>Shop a Collection of Etsy Pottery</h3></a></div></div><div class=container><div class=row><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><div class="js-list-of-items list-of-items"><div class=list-header>Shop the Most Recent Listings:</div><!-- Append list-template here --></div><button class="sort-by-price btn btn-default">Sort by Price <i class="icon ion-ios7-arrow-thin-down"></i> to <i class="icon ion-ios7-arrow-thin-up"></i></button> <!-- <input type="number" class="js-additional additional" placeholder="How many?"/>
+                    <button class="add-items-to-list">Add More to List</button> Come back to this...works but not after search--></div><div class="js-main-view main-view col-lg-7 col-md-7 col-sm-7 col-xs-7"><!-- Append focus-template here --></div></div><!--  <div class="track-price">
+                append table with trending prices???
+            </div>  Will use if I use chartjs--></div><div class=footer><p>♥ from JMills</p></div><script type=text/template id=list-view-template><div>
                 <h4><%=this.model.get('title')%></h4> 
                 <span>$<%=this.model.get('price')%></span>
             </div></script><script type=text/template id=focus-view-template><div style="background-color: #<%=this.model.get('Images')[0].hex_code%>">
@@ -13,16 +16,26 @@
                 <span>$<%=this.model.get('price')%></span>
                 <a  href='<%=this.model.get("url")%>'>View on Etsy</a>
             </div>    
-            </div></script><script type=text/template><div class="col-lg-6">
-                <div class="input-group">
-                    <input type="text" class="js-keyword-search form-control" placeholder="Search keywords here..."/>
-                    <span class="input-group-btn">
-                        <a class="js-search-btn btn btn-default" type="button">Search!</a>
-                    </span>
+            </div></script><script type=text/template id=table-view-template>//append chart of trending prices here?</script><script type=text/template id=compare-template><div class="first-search">
+                <input type="text" id="first-search-input" placeholder="First I want to search for...">
+                <div class="first-search-list"> First set of search results
+                    <h3><%=this.model.get('title')%></h3>
+                    <span>$<%=this.model.get('price')%></span>
                 </div>
-             </div></script><script type=text/template id=table-view-template>//append chart of trending prices here?</script><script src=scripts/b35d1f73.vendor.js></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                <div class="first-focus-spot">
+                    // same as focus template? is this getting too cray-cray?
+                </div>
+            </div>
+            <div class="second-search">
+                <input type="text" id="second-search-input" placeholder="Second I want to search for...">
+                <div class="second-search-list">
+                    <h3><%=this.model.get('title')%></h3>
+                    <span>$<%=this.model.get('price')%></span>
+                </div>
+                <div class="second-focus-spot">Second Focus on item here??</div>
+            </div></script><script src=scripts/022f5ef7.vendor.js></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src=scripts/aaf74903.plugins.js></script><script src=scripts/db0c36e2.main.js></script>
+            ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src=scripts/aaf74903.plugins.js></script><script src=scripts/4f9b78d8.main.js></script>
