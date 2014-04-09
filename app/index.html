@@ -12,7 +12,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
-
+        <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css"/>
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -25,51 +25,43 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="header-bckgrd">
+        
+        <div class="header">
             <div class="container">
-                <div class="header">
-                    <ul class="nav nav-pills pull-right">
-                        <li class="active"><a href="">Home</a></li>
-                        <li><a href="#/compare">Compare</a></li>
-                        <li>
-                            <div class="input-group">
-                                <input type="text" class="js-keyword-search" placeholder="Search for keyword..."/>
-                                <span class="input-group-btn">
-                                    <a class="js-search-btn btn btn-default" type="button">Search!</a>
-                                </span>
-                            </div>
-                        </li>    
-                    </ul>
-                    <h3 class="text-muted">Shop a Collection of Etsy Pottery</h3>
-                </div>
-            </div>    
-        </div>    
-           
-        <div class="bckgrd">
-            <div class="container">   
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="js-list-of-items list-of-items">
-                            <div class="list-header">Shop the Most Recent Listings:</div>    
-                            <!-- Append list-template here -->
-                        </div>
-                        <button class="sort-by-price">Sort by Price</button>
-                        <input type="text" class="js-additional form-control" placeholder="Add"/>
-                        <button class="add-items-to-list">Add Items!</button>
-                    </div>    
-                    <div class="js-main-view main-view col-lg-7">
-                        <!-- Append focus-template here -->
-                    </div>
-                    
-                    <div class="results">
-                        <!-- Append search results here? -->
-                    </div>
-                </div>
-                <div class="track-price">
-                    <!-- append table with trending prices??? -->
-                </div>   
+                <ul class="nav nav-pills pull-right">
+                    <li class="input-group">
+                        <input type="text" class="js-keyword-search" placeholder="Search for keyword..."/>
+                    </li>
+                    <li class="input-group">
+                        <a><button class="js-search-btn btn btn-default">Search</button></a>
+                    </li>  
+                    <!-- <li><button><a href="#/compare">Compare</a></button></li> Come back to this-->
+                </ul>
+                <a href=""><h3 class="text-muted">Shop a Collection of Etsy Pottery</h3></a>
             </div>
+        </div>       
+           
+       
+        <div class="container">   
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="js-list-of-items list-of-items">
+                        <div class="list-header">Shop the Most Recent Listings:</div>    
+                        <!-- Append list-template here -->
+                    </div>
+                    <button class="sort-by-price btn btn-default">Sort by Price <i class='icon ion-ios7-arrow-thin-down'></i> to <i class='icon ion-ios7-arrow-thin-up'></i></button>
+                    <!-- <input type="number" class="js-additional additional" placeholder="How many?"/>
+                    <button class="add-items-to-list">Add More to List</button> Come back to this...works but not after search-->
+                </div>    
+                <div class="js-main-view main-view col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <!-- Append focus-template here -->
+                </div>
+            </div>
+           <!--  <div class="track-price">
+                append table with trending prices???
+            </div>  Will use if I use chartjs-->  
         </div>
+      
 
         <div class="footer">
             <p>♥ from JMills</p>
@@ -103,13 +95,21 @@
         <script type="text/template" id="compare-template">
             <div class="first-search">
                 <input type="text" id="first-search-input" placeholder="First I want to search for...">
-                <div class="first-search-list">First results here</div>
-                <div class="first-focus-spot">Focus on item here</div>
+                <div class="first-search-list"> First set of search results
+                    <h3><%=this.model.get('title')%></h3>
+                    <span>$<%=this.model.get('price')%></span>
+                </div>
+                <div class="first-focus-spot">
+                    // same as focus template? is this getting too cray-cray?
+                </div>
             </div>
             <div class="second-search">
                 <input type="text" id="second-search-input" placeholder="Second I want to search for...">
-                <div class="second-search-list">First results here</div>
-                <div class="second-focus-spot">Focus on item here</div>
+                <div class="second-search-list">
+                    <h3><%=this.model.get('title')%></h3>
+                    <span>$<%=this.model.get('price')%></span>
+                </div>
+                <div class="second-focus-spot">Second Focus on item here??</div>
             </div>
 
 
@@ -120,7 +120,6 @@
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
-        <script src='bower_components/isotope/jquery.isotope.min.js'></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -154,7 +153,7 @@
         <script src="scripts/model.js"></script>
         <script src="scripts/views/list-view.js"></script>
         <script src="scripts/views/focus-view.js"></script>
-        <script src="scripts/views/search-view.js"></script>
+        <script src="scripts/views/compare-view.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

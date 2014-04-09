@@ -9,11 +9,11 @@ var ItemsCollection = Backbone.Collection.extend({
 		return response.results;
 	},
 
-	// initialize: function(){
-	// 	this.on('add', function(item){
-	// 		new ListView({model: item});
-	// 	});
-	// },
+	initialize: function(){
+		this.on('add', function(item){
+			new ListView({model: item});
+		});
+	},
 
 	comparator: function(a,b) {
 	   var a = parseFloat(a.get('price')),
@@ -24,7 +24,3 @@ var ItemsCollection = Backbone.Collection.extend({
 	   return a > b ? 1 : -1;
 	}
 });
-
-
-	//Only need if we end up saving data (i.e. make price chart)
-	//url: 'http://tiny-pizza-server.herokuapp.com/collections/jens-etsy-items',

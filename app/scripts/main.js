@@ -1,20 +1,16 @@
-console.log('manbearpig');
-//Pottery/ceramics -> way to filter out commercial looking coffee mugs?
+//Things for the future:
+//	Pottery/ceramics -> way to filter out commercial looking coffee mugs?
+//	Sort by price both ways
+//	Refactor so there's a main-view and not main.js
+// 	Improve changing background -> defualt background for items w/o hex value
 
-//Goals: fetch on interval,
-//		 sort by price both ways
-//		 search -> maybe put search field in header????
-//		 Hookup home view 
-// 		 Improve changing background
-//		 Be able to add ___ more to list-view
+console.log('manbearpig');
 
 $(document).ready(function(){
 
 	router = new MainRouter();
 
 	Backbone.history.start();
-
-	//fetchNewItems();
 
 	$('.sort-by-price').on('click', function(){
 		sortItems();
@@ -25,33 +21,17 @@ $(document).ready(function(){
 	});
 
 	$('.js-search-btn').on('click', function(){
-		var keyword = $('.js-keyword-search').val();
+		var searchWord = $('.js-keyword-search').val();
 
-		window.location.hash = 'search/' + keyword;
+		window.location.hash = 'search/' + searchWord;
 
 		$('.js-keyword-search').val('');
 	});
-
-
-
 });
 
+//Helper functions that need a home:
 
-//Does this work? Success console.log prints but cant seem to pay attention long enough to notice if new things are actually loading
-function fetchNewItems(){
-	setInterval(function(){
-		items.fetch({
-			success: function(){
-				console.log('Sweet! Fetching new items for you.');
-			},
-			error: function(){
-				console.log('Unfortuntely cannot fetch new messages at this time.');
-			}
-		});
-	}, 120000);
-}
-
-//Improve this so it toggles?
+//Improve this so it toggles  b/t low to high and hight to low?
 function sortItems(){
 
 	items.sort();
@@ -71,10 +51,5 @@ function increaseItemList(){
 	items.url = 'https://api.etsy.com/v2/listings/active.js?keywords=ceramic,pottery&limit='+ newLimit +'&api_key=42hmr9rr7q7wvj31sce3ofwt&includes=Images&callback=?',
 
 	items.fetch();
-
-	// items.each(function(item){
-	// 	new ListView({model: item});
-	// });
-
 }
 

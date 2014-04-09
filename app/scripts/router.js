@@ -1,20 +1,17 @@
 var MainRouter = Backbone.Router.extend({
 	routes: {
 
-		'': 'index',
+		'': 'listItems',
 		'items/:id': 'focusOnItem',
-		'search/:keyword': 'showSearch',
+		'search/:searchWord': 'showResults'
 	},
 
 	initialize: function(){
 		this.items = new ItemsCollection();
-
-		this.items.on('add', function(item){
-			new ListView({model: item});
-		});
 	},
 
-	index: function(){
+	listItems: function(){
+
 		this.items.fetch();
 	},
 
@@ -26,14 +23,12 @@ var MainRouter = Backbone.Router.extend({
 		new FocusView({model:focusItem});
 	},
 
-	showSearch: function(keyword){
+	showResults: function(searchWord){
 
 		$('.item-list-version').empty('');
-		$('.list-header').html('Shopping '+ keyword +' items:');
 
-		this.items.url += ','+ keyword;
+		this.items.url += ',' + searchWord;
 
 		this.items.fetch();
-
 	}	
 });
