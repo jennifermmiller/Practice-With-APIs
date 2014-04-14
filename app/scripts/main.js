@@ -1,6 +1,7 @@
 //Things for the future:
 //	Pottery/ceramics -> way to filter out commercial looking coffee mugs?
 //	Sort by price both ways
+// if statement for hex values
 //	Refactor so there's a main-view and not so much on main.js
 // 	Get icons working on ghpages
 //  Uncomment out expanded search, if figure out where to put it on page
