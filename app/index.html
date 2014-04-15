@@ -74,17 +74,44 @@
             </div>    
         </script>
         <script type="text/template" id="focus-view-template">
-            <div style="background-color: #<%=this.model.get('Images')[0].hex_code%>">
-            <img src="<%=this.model.get('Images')[0].url_570xN%>"/>
-            <h3><%=this.model.get('title')%></h3>
-            <div class="item-description" style="background-color: #<%=this.model.get('Images')[1].hex_code%>">
-                <p><%=this.model.get('description')%></p>
-            </div>
-            <div class="more-info">
-                <span>$<%=this.model.get('price')%></span>
-                <a  href='<%=this.model.get("url")%>'>View on Etsy</a>
-            </div>    
-            </div>
+           <% if (typeof(this.model.get('Images')[0]) !== 'undefined') { %>
+               <div style="background-color: #<%=this.model.get('Images')[0].hex_code%>">
+                   <img src="<%=this.model.get('Images')[0].url_570xN%>"/>
+                   <h3><%=this.model.get('title')%></h3>
+                   
+                   <% if(typeof(this.model.get('Images')[1]) !== 'undefined') { %>
+                       <div class="item-description" style="background-color: #<%=this.model.get('Images')[1].hex_code%>">
+                           <p><%=this.model.get('description')%></p>
+                       </div>
+                   <% } else { %>
+                       <div class="item-description" style="background-color: #D6C2C2">
+                           <p><%=this.model.get('description')%></p>
+                       </div>
+                   <% } %>
+                   <div class="more-info">
+                       <span>$<%=this.model.get('price')%></span>
+                       <a  href='<%=this.model.get("url")%>'>View on Etsy</a>
+                   </div>    
+               </div>
+           <% } else {%> 
+               <div style="background-color: #808080"></div>
+                   <img src="<%=this.model.get('Images')[0].url_570xN%>"/>
+                   <h3><%=this.model.get('title')%></h3>      
+                   <% if(typeof(this.model.get('Images')[1]) !== 'undefined') { %>
+                       <div class="item-description" style="background-color: #<%=this.model.get('Images')[1].hex_code%>">
+                           <p><%=this.model.get('description')%></p>
+                       </div>
+                   <% } else { %>
+                       <div class="item-description" style="background-color: #D6C2C2">
+                           <p><%=this.model.get('description')%></p>
+                       </div>
+                   <% } %>
+                   <div class="more-info">
+                       <span>$<%=this.model.get('price')%></span>
+                       <a  href='<%=this.model.get("url")%>'>View on Etsy</a>
+                   </div>    
+               </div>
+           <% } %>
         </script>
 
         <script type="text/template" id="table-view-template">
